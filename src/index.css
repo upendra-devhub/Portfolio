@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-color: #FDFDFB;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Notebook ruled paper background matching reference exact metrics:
+   Background: #FDFDFB, 1px line: #DCDBD9, line repeat: 23px */
+.notebook-ruled-bg {
+  background-color: #FDFDFB;
+  background-image: linear-gradient(to bottom, transparent 22px, #DCDBD9 23px);
+  background-size: 100% 23px;
+}
+
+.overflow-x-clip {
+  overflow-x: clip;
+}
+
+.font-pixel {
+  font-family: 'Jersey 15', 'Jersey 25', 'Silkscreen', 'Press Start 2P', monospace;
+}
+
+.font-handwriting {
+  font-family: 'Caveat', 'Architects Daughter', cursive;
+}
+
+.font-mono-ui {
+  font-family: 'Space Mono', ui-monospace, monospace;
+}
+
+.font-display {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+/* Torn paper jagged ends clip-path */
+.torn-shape {
+  clip-path: polygon(
+    0% 6%, 2% 2%, 98% 1%, 100% 5%,
+    98.5% 15%, 100% 26%, 98% 38%, 100% 50%, 98.2% 62%, 100% 74%, 98% 86%, 100% 96%,
+    98% 99%, 2% 98%, 0% 95%,
+    1.8% 85%, 0% 72%, 2% 60%, 0% 48%, 1.8% 36%, 0% 24%, 1.8% 12%
+  );
+}
+
+/* Postage stamp perforated icon tile clip-path */
+.stamp-shape {
+  clip-path: polygon(
+    0% 10%, 4% 10%, 4% 0%, 14% 0%, 14% 4%, 24% 4%, 24% 0%, 34% 0%, 34% 4%, 44% 4%, 44% 0%, 56% 0%, 56% 4%, 66% 4%, 66% 0%, 76% 0%, 76% 4%, 86% 4%, 86% 0%, 96% 0%, 96% 4%, 100% 4%,
+    100% 14%, 96% 14%, 96% 24%, 100% 24%, 100% 34%, 96% 34%, 96% 44%, 100% 44%, 100% 56%, 96% 56%, 96% 66%, 100% 66%, 100% 76%, 96% 76%, 96% 86%, 100% 86%, 100% 96%, 96% 96%,
+    96% 100%, 86% 100%, 86% 96%, 76% 96%, 76% 100%, 66% 100%, 66% 96%, 56% 96%, 56% 100%, 44% 100%, 44% 96%, 34% 96%, 34% 100%, 24% 100%, 24% 96%, 14% 96%, 14% 100%, 4% 100%, 4% 96%, 0% 96%,
+    0% 86%, 4% 86%, 4% 76%, 0% 76%, 0% 66%, 4% 66%, 4% 56%, 0% 56%, 0% 44%, 4% 44%, 4% 34%, 0% 34%, 0% 24%, 4% 24%, 4% 14%, 0% 14%
+  );
+}
