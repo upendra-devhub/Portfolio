@@ -98,6 +98,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <div>
               <a
                 href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group/link font-mono-ui font-extrabold text-xs sm:text-[13px] tracking-widest uppercase underline underline-offset-4 inline-flex items-center gap-2 hover:opacity-75 transition-all duration-200"
               >
                 <span>VIEW PROJECT</span>
@@ -152,7 +154,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           />
 
           {/* White Photo / Screenshot Paper Frame with tactile hover lift */}
-          <div className="w-full bg-white p-2.5 sm:p-3.5 rounded-[2px] shadow-[4px_12px_36px_rgba(0,0,0,0.25)] border border-black/10 cursor-pointer overflow-hidden transition-all duration-500 ease-out group-hover/card:shadow-[6px_18px_44px_rgba(0,0,0,0.32)] group-hover/card:scale-[1.015]">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.title} live project in a new tab`}
+            className="block w-full bg-white p-2.5 sm:p-3.5 rounded-[2px] shadow-[4px_12px_36px_rgba(0,0,0,0.25)] border border-black/10 cursor-pointer overflow-hidden transition-all duration-500 ease-out group-hover/card:shadow-[6px_18px_44px_rgba(0,0,0,0.32)] group-hover/card:scale-[1.015]"
+          >
             <div className="w-full aspect-[16/10] overflow-hidden bg-neutral-900 rounded-[1px]">
               <img
                 src={project.image}
@@ -161,7 +169,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 loading="lazy"
               />
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

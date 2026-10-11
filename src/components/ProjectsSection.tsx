@@ -17,11 +17,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = () => {
       <ProjectsHeader />
 
       {/* 2. Sticky Stacking Project Cards */}
-      <div className="relative w-full max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8 mt-4 sm:mt-8">
+      <div className="relative w-full max-w-[1360px] mx-auto px-4 sm:px-6 md:px-8 mt-4 sm:mt-8">
         {projectsData.map((project, index) => (
           <div
             key={project.number}
-            className={`sticky ${index > 0 ? 'mt-[15vh] sm:mt-[22vh]' : ''}`}
+            className={`sticky ${index > 0 ? 'mt-[20vh] sm:mt-[32vh] lg:mt-[35vh]' : ''}`}
             style={{
               top: '76px',
               zIndex: 10 + index,
@@ -34,13 +34,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = () => {
             />
           </div>
         ))}
-        {/* Dynamic scroll runway: scales with viewport height so that Card 2
-            is guaranteed to reach top: 76px and sit completely over Card 1
-            on all displays (including 1080p, 1440p, laptops, and mobile) */}
+        {/* Calibrated scroll runway: ends right as Card 2 completes its stack over Card 1,
+            ensuring zero dead scroll when scrolling back towards the top */}
         <div
           className="w-full pointer-events-none"
           style={{
-            height: 'clamp(80px, calc(100vh - 640px + 120px), 650px)',
+            height: 'max(30px, calc(100vh - 770px))',
           }}
           aria-hidden="true"
         />

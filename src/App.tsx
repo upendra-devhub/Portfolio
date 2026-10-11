@@ -1,35 +1,39 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { HeroIntroTransition } from './components/HeroIntroTransition';
+import { ContactPage } from './pages/ContactPage';
 
 export function App() {
-  const [replayKey, setReplayKey] = useState<number>(0);
+  const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
+  const [currentHash, setCurrentHash] = useState(() => window.location.hash);
 
-  const handleReplay = useCallback(() => {
-    setReplayKey((prev) => prev + 1);
-  }, []);
-
-  // Keyboard shortcut: Press 'R' or 'Space' to replay sequence cleanly
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (
-        e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLTextAreaElement
-      ) {
-        return;
-      }
-      if (e.key === 'r' || e.key === 'R' || e.key === ' ') {
-        e.preventDefault();
-        handleReplay();
-      }
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+      setCurrentHash(window.location.hash);
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleReplay]);
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
+  }, []);
+
+  const isContactPage =
+    currentPath === '/contact' ||
+    currentPath === '/contact/' ||
+    currentHash === '#contact-page' ||
+    currentHash === '#/contact';
 
   return (
     <main className="relative min-h-screen w-full overflow-x-clip notebook-ruled-bg">
-      <HeroIntroTransition replayKey={replayKey} />
+      {isContactPage ? (
+        <ContactPage />
+      ) : (
+        <HeroIntroTransition replayKey={0} />
+      )}
     </main>
   );
 }

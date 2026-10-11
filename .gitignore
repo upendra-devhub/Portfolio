@@ -10,9 +10,11 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-dev-artifacts/
-screenshots/
 *.local
+
+# Archive / Non-essential items
+archive/
+_archive/
 
 # Editor directories and files
 .vscode/*

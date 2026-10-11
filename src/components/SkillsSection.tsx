@@ -10,11 +10,12 @@ interface SkillsSectionProps {
 export const SkillsSection: React.FC<SkillsSectionProps> = () => {
   return (
     <section
-      id="skills"
-      className="relative w-full overflow-x-clip pt-16 sm:pt-24 pb-28 sm:pb-36 lg:pb-40 select-none"
+      id="playground"
+      className="relative w-full overflow-x-clip scroll-mt-16 sm:scroll-mt-20 pt-16 sm:pt-24 pb-14 sm:pb-18 lg:pb-20 select-none"
     >
+      <div id="skills" className="sr-only" aria-hidden="true" />
       <div className="relative w-full max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center">
-        {/* 1. Casual Handwritten Heading: "things i use" */}
+        {/* 1. Header: Casual Heading: "things i use" */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}

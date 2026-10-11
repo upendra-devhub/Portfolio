@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { navigate } from '../utils/navigation';
 
 interface ContactButtonProps {
   isRevealed: boolean;
@@ -17,7 +18,11 @@ export const ContactButton: React.FC<ContactButtonProps> = ({ isRevealed }) => {
       className="mt-3 sm:mt-5 select-none"
     >
       <a
-        href="#contact"
+        href="/contact"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate('/contact');
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className="group relative inline-flex items-center gap-3 px-4 py-2.5 sm:px-5 sm:py-3 bg-[#191510] text-white rounded-[3px] border border-[#191510] shadow-[2px_2px_0px_rgba(0,0,0,0.25)] hover:bg-black hover:shadow-[3px_3px_0px_rgba(0,0,0,0.3)] transition-all duration-150 cursor-pointer"

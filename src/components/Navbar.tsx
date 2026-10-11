@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { navigate } from '../utils/navigation';
 
 interface NavbarProps {
   isRevealed: boolean;
+  isContactPage?: boolean;
 }
 
 // 1. Pink Smiley Badge Icon (Far Left)
@@ -76,39 +78,47 @@ const DiamondIcon = () => (
   </svg>
 );
 
-// 6. Yellow Circular LinkedIn Badge (+15% scaled: 29px-31px)
+// 6. Yellow Circular LinkedIn Badge (+20% scaled, pixel-aligned & GPU stabilized)
 const LinkedInBadge = () => (
   <a
-    href="https://linkedin.com"
+    href="https://www.linkedin.com/in/upendrasom1c/"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="LinkedIn"
     title="LinkedIn"
-    className="w-[28px] h-[28px] sm:w-[31px] sm:h-[31px] rounded-full bg-[#F7C94F] border-[1.5px] border-white shadow-[1px_1.5px_0px_rgba(0,0,0,0.18)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shrink-0"
+    className="w-[34px] h-[34px] sm:w-[38px] sm:h-[38px] rounded-full bg-[#F7C94F] border-[1.8px] sm:border-2 border-white shadow-[1px_2px_0px_rgba(0,0,0,0.18)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-150 ease-out origin-center transform-gpu will-change-transform shrink-0 cursor-pointer"
   >
-    <svg viewBox="0 0 24 24" className="w-4 h-4">
+    <svg
+      viewBox="0 0 24 24"
+      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] pointer-events-none select-none shrink-0"
+      shapeRendering="geometricPrecision"
+    >
       <rect x="2" y="2" width="20" height="20" rx="3.5" fill="#191510" />
-      <circle cx="7" cy="7.5" r="1.3" fill="#F7C94F" />
-      <rect x="5.7" y="10" width="2.6" height="7.5" rx="0.5" fill="#F7C94F" />
+      <circle cx="7" cy="7.2" r="1.3" fill="#F7C94F" />
+      <rect x="5.7" y="9.8" width="2.6" height="7.7" rx="0.5" fill="#F7C94F" />
       <path
-        d="M11 10 h2.5 v1.2 c0.6-0.9 1.6-1.4 2.8-1.4 2 0 3.2 1.3 3.2 3.6 v4.1 h-2.6 v-3.8 c0-1.1-0.5-1.8-1.5-1.8 -0.9 0-1.7 0.7-1.7 1.8 v3.8 h-2.7 z"
+        d="M11 9.8 h2.5 v1.2 c0.6-0.9 1.6-1.4 2.8-1.4 2 0 3.2 1.3 3.2 3.6 v4.3 h-2.6 v-3.8 c0-1.1-0.5-1.8-1.5-1.8 -0.9 0-1.7 0.7-1.7 1.8 v3.8 h-2.7 z"
         fill="#F7C94F"
       />
     </svg>
   </a>
 );
 
-// 7. Pink Circular GitHub Badge (+15% scaled: 29px-31px)
+// 7. Pink Circular GitHub Badge (+20% scaled, pixel-aligned & GPU stabilized)
 const GithubBadge = () => (
   <a
-    href="https://github.com"
+    href="https://github.com/upendra-devhub"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="GitHub"
     title="GitHub"
-    className="w-[28px] h-[28px] sm:w-[31px] sm:h-[31px] rounded-full bg-[#FE4C82] border-[1.5px] border-white shadow-[1px_1.5px_0px_rgba(0,0,0,0.18)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shrink-0"
+    className="w-[34px] h-[34px] sm:w-[38px] sm:h-[38px] rounded-full bg-[#FE4C82] border-[1.8px] sm:border-2 border-white shadow-[1px_2px_0px_rgba(0,0,0,0.18)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-150 ease-out origin-center transform-gpu will-change-transform shrink-0 cursor-pointer"
   >
-    <svg viewBox="0 0 24 24" className="w-4 h-4 fill-[#191510]">
+    <svg
+      viewBox="0 0 24 24"
+      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] fill-[#191510] pointer-events-none select-none shrink-0"
+      shapeRendering="geometricPrecision"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -118,17 +128,26 @@ const GithubBadge = () => (
   </a>
 );
 
-// 8. Green Circular Instagram Badge (+15% scaled: 29px-31px)
+// 8. Green Circular Instagram Badge (+20% scaled, pixel-aligned & GPU stabilized)
 const InstagramBadge = () => (
   <a
-    href="https://instagram.com"
+    href="https://www.instagram.com/anshusom1c/"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Instagram"
     title="Instagram"
-    className="w-[28px] h-[28px] sm:w-[31px] sm:h-[31px] rounded-full bg-[#00BA7C] border-[1.5px] border-white shadow-[1px_1.5px_0px_rgba(0,0,0,0.18)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shrink-0"
+    className="w-[34px] h-[34px] sm:w-[38px] sm:h-[38px] rounded-full bg-[#00BA7C] border-[1.8px] sm:border-2 border-white shadow-[1px_2px_0px_rgba(0,0,0,0.18)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-150 ease-out origin-center transform-gpu will-change-transform shrink-0 cursor-pointer"
   >
-    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="#191510" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] pointer-events-none select-none shrink-0"
+      fill="none"
+      stroke="#191510"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      shapeRendering="geometricPrecision"
+    >
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="0.8" fill="#191510" />
@@ -137,10 +156,16 @@ const InstagramBadge = () => (
 );
 
 // 9. White Boxy CONTACT Button with Heart Icon (Desktop: +15% wider, h-[32px] sm:h-[34px], px-4)
-const ContactButtonNav = () => (
+const ContactButtonNav = ({ isContactPage }: { isContactPage?: boolean }) => (
   <a
-    href="#contact"
-    className="h-[35px] sm:h-[38px] px-3.5 sm:px-4 bg-white border-2 border-[#191510] shadow-[1.5px_2px_0px_#C8C7C5] flex items-center gap-2 rounded-[2px] hover:translate-x-[0.5px] hover:translate-y-[0.5px] active:translate-x-[1px] active:translate-y-[1px] transition-all shrink-0 ml-1.5 cursor-pointer"
+    href="/contact"
+    onClick={(e) => {
+      e.preventDefault();
+      navigate('/contact');
+    }}
+    className={`h-[35px] sm:h-[38px] px-3.5 sm:px-4 ${
+      isContactPage ? 'bg-[#F7C94F]' : 'bg-white'
+    } border-2 border-[#191510] shadow-[1.5px_2px_0px_#C8C7C5] flex items-center gap-2 rounded-[2px] hover:translate-x-[0.5px] hover:translate-y-[0.5px] active:translate-x-[1px] active:translate-y-[1px] transition-all shrink-0 ml-1.5 cursor-pointer`}
   >
     <svg
       viewBox="0 0 24 24"
@@ -197,14 +222,25 @@ const HamburgerButton = ({
   </button>
 );
 
-export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
+export const Navbar: React.FC<NavbarProps> = ({ isRevealed, isContactPage }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<'home' | 'about' | 'casestudy'>('home');
+  const [activeSection, setActiveSection] = useState<'home' | 'about' | 'casestudy' | 'playground'>('home');
 
   React.useEffect(() => {
+    if (isContactPage) return;
+
     const handleScroll = () => {
+      const playgroundElem = document.getElementById('playground');
       const caseStudyElem = document.getElementById('casestudy');
       const aboutElem = document.getElementById('about');
+
+      if (playgroundElem) {
+        const playRect = playgroundElem.getBoundingClientRect();
+        if (playRect.top <= window.innerHeight * 0.45) {
+          setActiveSection('playground');
+          return;
+        }
+      }
 
       if (caseStudyElem) {
         const caseRect = caseStudyElem.getBoundingClientRect();
@@ -228,7 +264,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isContactPage]);
 
   return (
     <motion.header
@@ -242,9 +278,15 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
         {/* Left side: Pink Smiley (+ Desktop Signature Yellow Active Tab & Nav Links) */}
         <div className="flex items-center h-full">
           {/* Pink Smiley Face Badge */}
-          <div className="pl-3.5 sm:pl-5 md:pl-6 pr-2.5 sm:pr-4 flex items-center">
+          <div className="pl-4 sm:pl-6 md:pl-8 pr-2.5 sm:pr-4 flex items-center">
             <a
-              href="#top"
+              href={isContactPage ? '/' : '#top'}
+              onClick={(e) => {
+                if (isContactPage) {
+                  e.preventDefault();
+                  navigate('/');
+                }
+              }}
               aria-label="Home Smiley"
               title="Upendra"
               className="w-[28px] h-[28px] sm:w-[31px] sm:h-[31px] rounded-full bg-[#FE4C82] border-[1.5px] border-white shadow-[1px_1.5px_0px_rgba(0,0,0,0.18)] flex items-center justify-center shrink-0 hover:scale-105 active:scale-95 transition-transform"
@@ -256,7 +298,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
           {/* Desktop-only: Signature Yellow Active Tab & Navigation Links */}
           <nav className="hidden md:flex items-center h-full text-[#191510]">
             {/* HOME item / tab */}
-            {activeSection === 'home' ? (
+            {!isContactPage && activeSection === 'home' ? (
               <div className="h-full bg-[#F7C94F] flex items-center px-4.5 md:px-6 gap-2 cursor-pointer">
                 <StarIcon />
                 <span className="font-bold font-sans text-[13px] md:text-[14px] tracking-wider text-[#191510]">
@@ -265,7 +307,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
               </div>
             ) : (
               <a
-                href="#top"
+                href={isContactPage ? '/' : '#top'}
+                onClick={(e) => {
+                  if (isContactPage) {
+                    e.preventDefault();
+                    navigate('/');
+                  }
+                }}
                 className="h-full flex items-center px-4.5 md:px-5 gap-2 hover:bg-black/5 transition-colors font-bold font-sans text-[13px] md:text-[14px] tracking-wider"
               >
                 <StarIcon />
@@ -274,7 +322,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
             )}
 
             {/* ABOUT item / tab */}
-            {activeSection === 'about' ? (
+            {!isContactPage && activeSection === 'about' ? (
               <div className="h-full bg-[#F7C94F] flex items-center px-4.5 md:px-6 gap-2 cursor-pointer">
                 <UserIcon />
                 <span className="font-bold font-sans text-[13px] md:text-[14px] tracking-wider text-[#191510]">
@@ -283,7 +331,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
               </div>
             ) : (
               <a
-                href="#about"
+                href={isContactPage ? '/#about' : '#about'}
+                onClick={(e) => {
+                  if (isContactPage) {
+                    e.preventDefault();
+                    navigate('/#about');
+                  }
+                }}
                 className="h-full flex items-center px-4.5 md:px-5 gap-2 hover:bg-black/5 transition-colors font-bold font-sans text-[13px] md:text-[14px] tracking-wider"
               >
                 <UserIcon />
@@ -292,7 +346,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
             )}
 
             {/* CASE STUDY item / tab */}
-            {activeSection === 'casestudy' ? (
+            {!isContactPage && activeSection === 'casestudy' ? (
               <div className="h-full bg-[#F7C94F] flex items-center px-4.5 md:px-6 gap-2 cursor-pointer">
                 <GridIcon />
                 <span className="font-bold font-sans text-[13px] md:text-[14px] tracking-wider text-[#191510] whitespace-nowrap">
@@ -301,7 +355,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
               </div>
             ) : (
               <a
-                href="#casestudy"
+                href={isContactPage ? '/#casestudy' : '#casestudy'}
+                onClick={(e) => {
+                  if (isContactPage) {
+                    e.preventDefault();
+                    navigate('/#casestudy');
+                  }
+                }}
                 className="h-full flex items-center px-4.5 md:px-5 gap-2 hover:bg-black/5 transition-colors font-bold font-sans text-[13px] md:text-[14px] tracking-wider"
               >
                 <GridIcon />
@@ -309,19 +369,34 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
               </a>
             )}
 
-            {/* PLAYGROUND */}
-            <a
-              href="#playground"
-              className="hidden lg:flex h-full items-center px-4.5 md:px-5 gap-2 hover:bg-black/5 transition-colors font-bold font-sans text-[13px] md:text-[14px] tracking-wider"
-            >
-              <DiamondIcon />
-              <span>PLAYGROUND</span>
-            </a>
+            {/* PLAYGROUND item / tab */}
+            {!isContactPage && activeSection === 'playground' ? (
+              <div className="h-full bg-[#F7C94F] flex items-center px-4.5 md:px-6 gap-2 cursor-pointer">
+                <DiamondIcon />
+                <span className="font-bold font-sans text-[13px] md:text-[14px] tracking-wider text-[#191510] whitespace-nowrap">
+                  PLAYGROUND
+                </span>
+              </div>
+            ) : (
+              <a
+                href={isContactPage ? '/#playground' : '#playground'}
+                onClick={(e) => {
+                  if (isContactPage) {
+                    e.preventDefault();
+                    navigate('/#playground');
+                  }
+                }}
+                className="h-full flex items-center px-4.5 md:px-5 gap-2 hover:bg-black/5 transition-colors font-bold font-sans text-[13px] md:text-[14px] tracking-wider"
+              >
+                <DiamondIcon />
+                <span className="whitespace-nowrap">PLAYGROUND</span>
+              </a>
+            )}
           </nav>
         </div>
 
         {/* Right side: 3 Circular Social Badges + (Desktop: CONTACT button / Mobile: Square Hamburger button) */}
-        <div className="flex items-center gap-2.5 sm:gap-3 pr-3.5 sm:pr-5 md:pr-6">
+        <div className="flex items-center gap-2.5 sm:gap-3 pr-4 sm:pr-6 md:pr-8">
           {/* Yellow LinkedIn Badge */}
           <LinkedInBadge />
 
@@ -333,7 +408,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
 
           {/* Desktop CONTACT Button (+15% wider) */}
           <div className="hidden md:block">
-            <ContactButtonNav />
+            <ContactButtonNav isContactPage={isContactPage} />
           </div>
 
           {/* Mobile Square Hamburger Button (+15% wider) */}
@@ -357,10 +432,16 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
             className="md:hidden w-full bg-[#FCFCFB] border-t border-[#E5E5E2] px-4 py-3.5 flex flex-col gap-2.5 shadow-lg overflow-hidden"
           >
             <a
-              href="#top"
-              onClick={() => setIsMobileMenuOpen(false)}
+              href={isContactPage ? '/' : '#top'}
+              onClick={(e) => {
+                setIsMobileMenuOpen(false);
+                if (isContactPage) {
+                  e.preventDefault();
+                  navigate('/');
+                }
+              }}
               className={`flex items-center gap-2.5 px-4 py-2.5 rounded-md font-bold font-sans text-xs sm:text-[13px] tracking-wider transition-colors ${
-                activeSection === 'home'
+                !isContactPage && activeSection === 'home'
                   ? 'bg-[#F7C94F] border border-[#191510] text-[#191510] shadow-[1px_1px_0px_#191510]'
                   : 'text-[#191510] hover:bg-black/5'
               }`}
@@ -370,10 +451,16 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
             </a>
 
             <a
-              href="#about"
-              onClick={() => setIsMobileMenuOpen(false)}
+              href={isContactPage ? '/#about' : '#about'}
+              onClick={(e) => {
+                setIsMobileMenuOpen(false);
+                if (isContactPage) {
+                  e.preventDefault();
+                  navigate('/#about');
+                }
+              }}
               className={`flex items-center gap-2.5 px-4 py-2.5 rounded-md font-bold font-sans text-xs sm:text-[13px] tracking-wider transition-colors ${
-                activeSection === 'about'
+                !isContactPage && activeSection === 'about'
                   ? 'bg-[#F7C94F] border border-[#191510] text-[#191510] shadow-[1px_1px_0px_#191510]'
                   : 'text-[#191510] hover:bg-black/5'
               }`}
@@ -383,10 +470,16 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
             </a>
 
             <a
-              href="#casestudy"
-              onClick={() => setIsMobileMenuOpen(false)}
+              href={isContactPage ? '/#casestudy' : '#casestudy'}
+              onClick={(e) => {
+                setIsMobileMenuOpen(false);
+                if (isContactPage) {
+                  e.preventDefault();
+                  navigate('/#casestudy');
+                }
+              }}
               className={`flex items-center gap-2.5 px-4 py-2.5 rounded-md font-bold font-sans text-xs sm:text-[13px] tracking-wider transition-colors ${
-                activeSection === 'casestudy'
+                !isContactPage && activeSection === 'casestudy'
                   ? 'bg-[#F7C94F] border border-[#191510] text-[#191510] shadow-[1px_1px_0px_#191510]'
                   : 'text-[#191510] hover:bg-black/5'
               }`}
@@ -396,18 +489,34 @@ export const Navbar: React.FC<NavbarProps> = ({ isRevealed }) => {
             </a>
 
             <a
-              href="#playground"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center gap-2.5 px-4 py-2.5 rounded-md text-[#191510] hover:bg-black/5 font-bold font-sans text-xs sm:text-[13px] tracking-wider transition-colors"
+              href={isContactPage ? '/#playground' : '#playground'}
+              onClick={(e) => {
+                setIsMobileMenuOpen(false);
+                if (isContactPage) {
+                  e.preventDefault();
+                  navigate('/#playground');
+                }
+              }}
+              className={`flex items-center gap-2.5 px-4 py-2.5 rounded-md font-bold font-sans text-xs sm:text-[13px] tracking-wider transition-colors ${
+                !isContactPage && activeSection === 'playground'
+                  ? 'bg-[#F7C94F] border border-[#191510] text-[#191510] shadow-[1px_1px_0px_#191510]'
+                  : 'text-[#191510] hover:bg-black/5'
+              }`}
             >
               <DiamondIcon />
               <span>PLAYGROUND</span>
             </a>
 
             <a
-              href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center gap-2.5 px-4 py-2.5 rounded-md bg-white border-2 border-[#191510] text-[#191510] font-bold font-sans text-xs sm:text-[13px] tracking-wider shadow-[1.5px_2px_0px_#C8C7C5] transition-transform active:translate-y-0.5"
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                navigate('/contact');
+              }}
+              className={`flex items-center gap-2.5 px-4 py-2.5 rounded-md ${
+                isContactPage ? 'bg-[#F7C94F]' : 'bg-white'
+              } border-2 border-[#191510] text-[#191510] font-bold font-sans text-xs sm:text-[13px] tracking-wider shadow-[1.5px_2px_0px_#C8C7C5] transition-transform active:translate-y-0.5`}
             >
               <svg
                 viewBox="0 0 24 24"

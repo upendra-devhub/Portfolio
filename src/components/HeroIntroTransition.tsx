@@ -7,6 +7,9 @@ import { ContactButton } from './ContactButton';
 import { DecorativeElement } from './DecorativeElement';
 import { AboutSection } from './AboutSection';
 import { ProjectsSection } from './ProjectsSection';
+import { SkillsSection } from './SkillsSection';
+import { ContactSection } from './ContactSection';
+import { Footer } from './Footer';
 
 interface HeroIntroTransitionProps {
   replayKey: number;
@@ -67,7 +70,7 @@ export const HeroIntroTransition: React.FC<HeroIntroTransitionProps> = ({
         <div className="h-[51px] sm:h-[54px] md:h-[56px] w-full shrink-0" />
 
         {/* 2. Main Hero Section (Wide & Prominent matching reference) */}
-        <main className="relative flex-1 flex flex-col items-center justify-center py-4 sm:py-8 px-4 sm:px-6 max-w-6xl mx-auto w-full z-10 min-h-[calc(100vh-56px)]">
+        <main className="relative flex-1 flex flex-col items-center justify-center py-4 sm:py-8 px-4 sm:px-6 md:px-8 max-w-6xl mx-auto w-full z-10 min-h-[calc(100vh-56px)]">
           {/* Grand Wide Name Display with Surrounding Reference Badges & Status */}
           <NameDisplay isRevealed={isHomepageRevealed} />
 
@@ -87,10 +90,14 @@ export const HeroIntroTransition: React.FC<HeroIntroTransitionProps> = ({
         {/* 4. Projects Section: FEATURED WORKS with Sticky Stacking Cards */}
         <ProjectsSection isRevealed={isHomepageRevealed} />
 
-        {/* Bottom baseline padding */}
-        <footer className="w-full pb-8 sm:pb-12 text-center text-xs text-neutral-400 font-mono-ui select-none">
-          <span>&copy; {new Date().getFullYear()} Upendra &bull; Built with care</span>
-        </footer>
+        {/* 5. Things I Use / Skills Showcase Section */}
+        <SkillsSection isRevealed={isHomepageRevealed} />
+
+        {/* 6. Contact / Let's Talk Section */}
+        <ContactSection isRevealed={isHomepageRevealed} />
+
+        {/* 7. Footer Section */}
+        <Footer />
       </div>
     </div>
   );

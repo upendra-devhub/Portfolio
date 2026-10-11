@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const ProjectsHeader: React.FC = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center text-center select-none pt-12 sm:pt-20 pb-12 sm:pb-16 px-4">
+    <div className="w-full flex flex-col items-center justify-center text-center select-none pt-8 sm:pt-12 pb-8 sm:pb-10 px-4">
       {/* 1. Handwritten top label with underline: "explore my work!" */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}

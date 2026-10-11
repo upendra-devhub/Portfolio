@@ -15,12 +15,12 @@ export const AboutSection: React.FC<AboutSectionProps> = () => {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden pt-8 sm:pt-14 pb-20 sm:pb-28"
+      className="relative w-full overflow-hidden pt-8 sm:pt-14 pb-12 sm:pb-16"
     >
       {/* 1. Curved Hand-Drawn Divider (Enters at transition boundary) */}
       <AboutDivider />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* 2. Handwritten Upper-Left Label: "about me!" */}
         <AboutLabel />
 

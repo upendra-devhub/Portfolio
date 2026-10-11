@@ -29,7 +29,7 @@ export const projectsData: ProjectItem[] = [
     tabTextColor: '#191510',
     image: '/images/projects/healthopia-placeholder.jpg',
     tags: ['FULL-STACK', 'NODE.JS', 'MONGODB', 'CLOUDINARY'],
-    link: '#',
+    link: 'https://healthopia-backup.onrender.com/',
   },
   {
     number: '02',
@@ -45,6 +45,6 @@ export const projectsData: ProjectItem[] = [
     tabTextColor: '#FFFFFF',
     image: '/images/projects/complaint-desk-placeholder.jpg',
     tags: ['FULL-STACK', 'EXPRESS.JS', 'MONGODB', 'CLOUDINARY'],
-    link: '#',
+    link: 'https://complaint-management-stystem.vercel.app/',
   },
 ];
